@@ -1,15 +1,13 @@
-# PDF RAG with ChromaDB + Hugging Face
+# PDF RAG Hugging Face and Langchain
 
 A simple Retrieval-Augmented Generation (RAG) app that lets you upload PDFs, indexes them into a local ChromaDB using Sentence-Transformer embeddings, retrieves the most relevant chunks, and generates answers with a Hugging Face text2text model.
 
 ## Features
 - Multiple PDF upload and parsing via `pypdf`
 - Character-based chunking with overlap
-- Local, persistent vector store using **ChromaDB**
 - Embeddings from `sentence-transformers` (default: `all-MiniLM-L6-v2`)
-- Generation via Hugging Face `pipeline("text2text-generation")` (default: `google/flan-t5-base`)
-- Streamlit UI with configurable settings
-- Shows retrieved chunks and sources (filename + page)
+- Generation via Hugging Face `pipeline("text2text-generation")` (default: `facebook/bart-large-cnn`)
+- Gradio UI 
 
 ## Quickstart
 
@@ -29,10 +27,6 @@ pip install -r requirements.txt
 
 > **Tip:** If PyTorch wheels fail to install automatically on your system, please follow the official instructions for your platform: https://pytorch.org/get-started/locally/
 
-### 3) Run the app
-```bash
-streamlit run app.py
-```
 Then open the local URL shown in the terminal.
 
 ### 4) Use it
@@ -44,8 +38,7 @@ Then open the local URL shown in the terminal.
 ## Notes & Options
 
 - **Embedding model**: Change in the Streamlit sidebar (e.g., `sentence-transformers/all-MiniLM-L6-v2`, `all-mpnet-base-v2`, etc.).
-- **Generation model**: Also configurable (e.g., `google/flan-t5-base`). Larger models may require a GPU and more RAM/VRAM.
-- **Persistence**: The default Chroma path is `./.chroma_pdf_rag`. Delete it or click **Clear Database** in the app to start fresh.
+- **Generation model**: Also configurable (e.g., `facebook/bart-large-cnn`). Larger models may require a GPU and more RAM/VRAM.
 - **Security**: This is a local demo. Do not expose it to the public without proper hardening.
 
 ## Troubleshooting
